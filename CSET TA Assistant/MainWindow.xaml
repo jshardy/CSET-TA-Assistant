@@ -5,8 +5,215 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:CSET_TA_Assistant"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
-    <Grid>
-        
+        Title="OIT CSET TA Assistant" Height="860.461" Width="617">
+    <Grid Width="auto" Height="auto" VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="auto"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+
+        </Grid.RowDefinitions>
+
+        <!--Professor and Student-->
+        <StackPanel Grid.Row="0" Orientation="Horizontal">
+            <StackPanel Orientation="Horizontal">
+                <Label FontWeight="Bold" Width="100">Student:</Label>
+                <TextBox Name="txtStudent" MinWidth="150" MaxWidth="250"/>
+                <Border Width="100"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <Label FontWeight="Bold" Width="100">Professor:</Label>
+                <ComboBox Name="cmbProfessor" Tag="no" IsEditable="True" MinWidth="150" MaxWidth="250"/>
+            </StackPanel>
+        </StackPanel>
+
+        <StackPanel Grid.Row="1" Orientation="Horizontal">
+            <Label FontWeight="Bold" Width="100">Assignment:</Label>
+            <TextBox MinWidth="150" MaxWidth="250" Name="txtAssignment" Tag="no"/>
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition MinWidth="120"/>
+                    <ColumnDefinition MinWidth="35"/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <CheckBox Grid.Column="1" Name="chkAppend" IsChecked="True" HorizontalAlignment="Stretch" VerticalAlignment="Center">Append</CheckBox>
+                <Label Grid.Column="2" FontWeight="Bold">Word Doc:</Label>
+                <TextBox Grid.Column="3" MaxWidth="120" Name="txtPath"/>
+                <Button Grid.Column="4" Name="btnBrowseFiles" MinWidth="24" HorizontalAlignment="Right" VerticalAlignment="Stretch" Click="btnBrowseFiles_Click">...</Button>
+                <Button Grid.Column="5" Name="btnCreateDoc" HorizontalAlignment="Right" VerticalAlignment="Stretch" Click="btnCreateDoc_Click">Create Doc</Button>
+            </Grid>
+        </StackPanel>
+        <!--Professor end-->
+
+        <!--Program GUI start-->
+        <Grid Grid.Row="2">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <Label Grid.Column="0" FontWeight="Bold" Grid.Row="2">Program:</Label>
+            <Button Grid.Column="1" HorizontalAlignment="Right" MinWidth="65" x:Name="btnnClear" Click="btnClear" Width="88">Clear</Button>
+        </Grid>
+        <StackPanel Grid.Row="3" Orientation="Horizontal">
+            <StackPanel Orientation="Vertical">
+                <CheckBox>Does not compile with student test code</CheckBox>
+                <CheckBox>Does not compile with grader test code</CheckBox>
+                <CheckBox>Code not adequately tested</CheckBox>
+                <CheckBox>Not all required files present</CheckBox>
+                <CheckBox Name="chkLate" Checked="chkLate_Checked">Late submission</CheckBox>
+            </StackPanel>
+            <StackPanel Orientation="Vertical">
+                <CheckBox>No class diagram</CheckBox>
+                <CheckBox>Documentation doesn’t follow style guide</CheckBox>
+                <CheckBox>Inadequate documentation</CheckBox>
+                <CheckBox>No documentation</CheckBox>
+            </StackPanel>
+        </StackPanel>
+        <!--Program GUI End-->
+        <!--Code Mechanics Start-->
+        <StackPanel Grid.Row="4" Orientation="Vertical">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <Label FontWeight="Bold" Grid.Column="0">Code Mechanics:</Label>
+                <Label FontWeight="Bold" Grid.Column="1">Location and description of problem:</Label>
+            </Grid>
+        </StackPanel>
+        <StackPanel Grid.Row="5" Orientation="Vertical">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <TextBlock Grid.Column="0" TextWrapping="Wrap">Memory Leaks</TextBlock>
+                <TextBox Grid.Column="1" Name="txtMemoryLeak" VerticalAlignment="Stretch" MinWidth="300" HorizontalAlignment="Right"/>
+            </Grid>
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <TextBlock Grid.Column="0" TextWrapping="Wrap" MaxWidth="300">Incorrect statement usage (break - outside of switch, return with no value, continue, goto, using namespace std)</TextBlock>
+                <TextBox Grid.Column="1" Name="txtIncorrectStatement" VerticalAlignment="Center" Height="33"></TextBox>
+            </Grid>
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <TextBlock Grid.Column="0" TextWrapping="Wrap">Redundant code</TextBlock>
+                <TextBox Grid.Column="1" Name="txtRedundantCode"></TextBox>
+            </Grid>
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <TextBlock Grid.Column="0" TextWrapping="Wrap">Base member initialization not used</TextBlock>
+                <TextBox Grid.Column="1" Name="txtBasemember"></TextBox>
+            </Grid>
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <TextBlock Grid.Column="0" TextWrapping="Wrap">No/non-working destructor</TextBlock>
+                <TextBox Grid.Column="1" Name="txtDestructor"></TextBox>
+            </Grid>
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <TextBlock Grid.Column="0" TextWrapping="Wrap">No/non-working operator =</TextBlock>
+                <TextBox Grid.Column="1" Name="txtOperatorEq"></TextBox>
+            </Grid>
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <TextBlock Grid.Column="0" TextWrapping="Wrap">No/non-working copy constructor</TextBlock>
+                <TextBox Grid.Column="1" Name="txtCopyConstructor"></TextBox>
+            </Grid>
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <TextBlock Grid.Column="0" TextWrapping="Wrap">No/non-working constructor</TextBlock>
+                <TextBox Grid.Column="1" Name="txtConstructor"></TextBox>
+            </Grid>
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <TextBlock Grid.Column="0" TextWrapping="Wrap" MaxWidth="300">Not separating into .h and .cpp files for non-templated classes</TextBlock>
+                <TextBox Grid.Column="1" Name="txtNotSeperatehcpp"></TextBox>
+            </Grid>
+        </StackPanel>
+        <!--Code Mechanics End-->
+        <!--Comment Section Begin-->
+        <StackPanel Grid.Row="6" Orientation="Vertical">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition Height="60"/>
+                </Grid.RowDefinitions>
+                <Label Grid.Row="0" FontWeight="Bold">Program:</Label>
+                <Label Grid.Row="1">Missing functionality or does not adhere to lab specifications</Label>
+                <TextBox Grid.Row="2" Name="txtMissingFunctionality" TextWrapping="Wrap" AcceptsReturn="True" MaxWidth="608"></TextBox>
+            </Grid>
+        </StackPanel>
+        <StackPanel Grid.Row="7" Orientation="Vertical">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition/>
+                    <RowDefinition Height="60"/>
+                </Grid.RowDefinitions>
+                <Label Grid.Row="0" FontWeight="Bold">Runtime crash:</Label>
+                <TextBox Grid.Row="1" Name="txtRuntimeCrash" MinHeight="60" MaxWidth="608" TextWrapping="Wrap" AcceptsReturn="True"></TextBox>
+            </Grid>
+
+        </StackPanel>
+        <StackPanel Grid.Row="8" Orientation="Vertical">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition/>
+                    <RowDefinition Height="60"/>
+                </Grid.RowDefinitions>
+                <Label Grid.Row="0" FontWeight="Bold">Logic Error:</Label>
+                <TextBox Grid.Row="1" Name="txtLogicError" MinHeight="60" MaxWidth="608" TextWrapping="Wrap" AcceptsReturn="True"></TextBox>
+            </Grid>
+        </StackPanel>
+        <StackPanel Grid.Row="9" Orientation="Vertical">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition/>
+                    <RowDefinition Height="120"/>
+                </Grid.RowDefinitions>
+                <Label Grid.Row="0" FontWeight="Bold">Other comments:</Label>
+                <TextBox Grid.Row="1" Name="txtComment" MinHeight="120" MaxWidth="608" TextWrapping="Wrap" AcceptsReturn="True"></TextBox>
+            </Grid>
+        </StackPanel>
+
     </Grid>
 </Window>
