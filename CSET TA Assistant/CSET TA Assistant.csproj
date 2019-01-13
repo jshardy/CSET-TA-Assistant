@@ -94,6 +94,7 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <None Include="Templates\GradingTemplate.doc" />
     <None Include="Settings\Settings.ini" />
     <None Include="Templates\CST 211 Lab and Assignment Scoresheet.docx" />
     <None Include="Properties\Settings.settings">
